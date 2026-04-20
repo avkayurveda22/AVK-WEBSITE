@@ -71,8 +71,7 @@ export function Stars({ n = 5 }: { n?: number }) {
 export function Logo({ onClick }: { onClick?: () => void }) {
   return (
     <div className="logo" onClick={onClick}>
-      <div className="logo-mark">अ</div>
-      <div className="logo-text">AVK<small>Ayurvedic Clinic</small></div>
+      <img src="/logo.png" alt="AVK Ayurvedic Clinic" style={{ height: 60, width: "auto", display: "block", flexShrink: 0 }}/>
     </div>
   );
 }

@@ -121,17 +121,17 @@ export default function ConditionPage() {
             <Kicker>Related conditions</Kicker>
             <h2 style={{ marginBottom: 32 }}>Other {c.speciality.toLowerCase()} conditions we treat.</h2>
           </motion.div>
-          <motion.div className="grid-4" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={staggerContainer}>
-            {related.map((r) => (
-              <motion.div key={r.slug} variants={staggerItem}>
-                <Link href={`/conditions/${r.slug}`} className="card" style={{ textDecoration: "none", cursor: "pointer" }}>
+          <div className="grid-4">
+            {related.map((r, i) => (
+              <motion.div key={r.slug} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.08, duration: 0.4, ease }}>
+                <Link href={`/conditions/${r.slug}`} className="card" style={{ textDecoration: "none", cursor: "pointer", display: "block", height: "100%" }}>
                   <h4 style={{ fontFamily: "var(--serif)", fontSize: 20, marginBottom: 8 }}>{r.name}</h4>
                   <p style={{ color: "var(--ink-3)", margin: 0, fontSize: 14 }}>{r.description.slice(0, 100)}...</p>
                   <span className="more" style={{ marginTop: 12, display: "inline-block" }}>Read more <Icon name="arrow" size={13} stroke={2}/></span>
                 </Link>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div></section>
       )}
 
