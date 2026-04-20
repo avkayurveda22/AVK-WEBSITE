@@ -17,9 +17,9 @@ const PATHS: Record<string, React.ReactNode> = {
   chevron: <path d="M9 6l6 6-6 6"/>,
 };
 
-export default function Icon({ name, size = 20, stroke = 1.6 }: { name: string; size?: number; stroke?: number }) {
+export default function Icon({ name, size = 20, stroke = 1.6, style }: { name: string; size?: number; stroke?: number; style?: React.CSSProperties }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" style={style}>
       {PATHS[name]}
     </svg>
   );
