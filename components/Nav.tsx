@@ -3,13 +3,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { clinic, navPrimary, navAll } from "@/lib/data";
-import { Button, Logo } from "./ui";
+import { Logo } from "./ui";
 import Icon from "./Icon";
-import { useBooking } from "./BookingContext";
+import { WhatsAppCTA } from "./WhatsAppCTA";
 
 export default function Nav() {
   const pathname = usePathname();
-  const { openBooking } = useBooking();
   const [scrolled, setScrolled] = useState(false);
   const [drawer, setDrawer] = useState(false);
 
@@ -34,7 +33,7 @@ export default function Nav() {
           </div>
           <div className="nav-cta">
             <a href={clinic.phoneHref} className="nav-phone">{clinic.phone}</a>
-            <Button size="sm" variant="sage" onClick={() => openBooking()}>Book appointment</Button>
+            <WhatsAppCTA size="sm" label="Book on WhatsApp"/>
             <button className="nav-toggle" onClick={() => setDrawer(true)}>
               <Icon name="menu" size={16}/> Menu
             </button>
@@ -50,8 +49,8 @@ export default function Nav() {
         {navAll.map(([href, label]) => (
           <Link key={href} href={href} onClick={() => setDrawer(false)}>{label}</Link>
         ))}
-        <div style={{ marginTop: 28 }}>
-          <Button variant="sage" onClick={() => { openBooking(); setDrawer(false); }}>Book appointment</Button>
+        <div style={{ marginTop: 28 }} onClick={() => setDrawer(false)}>
+          <WhatsAppCTA label="Book on WhatsApp"/>
         </div>
         <a href={clinic.phoneHref} style={{ marginTop: 14, fontFamily: "var(--mono)", fontSize: 13 }}>{clinic.phone}</a>
       </aside>

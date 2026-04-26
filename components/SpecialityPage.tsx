@@ -2,9 +2,9 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { clinic, specialities, conditionSlug } from "@/lib/data";
-import { Button, Kicker, ImgPH } from "./ui";
+import { Kicker, ImgPH } from "./ui";
 import Icon from "./Icon";
-import { useBooking } from "./BookingContext";
+import { WhatsAppCTA } from "./WhatsAppCTA";
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
@@ -29,7 +29,6 @@ const scaleIn = {
 };
 
 export default function SpecialityPage({ slug, label }: { slug: string; label: string }) {
-  const { openBooking } = useBooking();
   const s = specialities.find((x) => x.slug === slug);
   if (!s) return null;
 
@@ -40,7 +39,7 @@ export default function SpecialityPage({ slug, label }: { slug: string; label: s
         <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}>{s.tagline}</motion.h1>
         <motion.p className="lede" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>{s.long}</motion.p>
         <motion.div style={{ marginTop: 28, display: "flex", gap: 12, flexWrap: "wrap" }} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.5 }}>
-          <Button variant="sage" onClick={() => openBooking(s.slug)}>Book a {s.name} consultation</Button>
+          <WhatsAppCTA label={`Book on WhatsApp`}/>
           <a href={clinic.phoneHref} className="btn btn-ghost">Call {clinic.phone}</a>
         </motion.div>
       </div></section>
@@ -70,7 +69,13 @@ export default function SpecialityPage({ slug, label }: { slug: string; label: s
           style={{ aspectRatio: "4/5", borderRadius: "var(--radius-lg)", overflow: "hidden", position: "sticky", top: 100 }}
           initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={scaleIn}
         >
-          <ImgPH label={s.name + " therapy"} style={{ height: "100%", borderRadius: 0 }}/>
+          {s.slug === "spine-joint" ? (
+            <img src="/spine-1.jpg" alt={s.name + " therapy"} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}/>
+          ) : s.slug === "geriatric" ? (
+            <img src="/fam.jpg" alt={s.name + " therapy"} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}/>
+          ) : (
+            <ImgPH label={s.name + " therapy"} style={{ height: "100%", borderRadius: 0 }}/>
+          )}
         </motion.div>
       </div></div></section>
 
@@ -117,7 +122,7 @@ export default function SpecialityPage({ slug, label }: { slug: string; label: s
         >
           <h2>Ready to start {s.name.toLowerCase()} treatment?</h2>
           <p className="lede" style={{ margin: "16px auto 28px" }}>A 45-minute assessment is the first step.</p>
-          <Button variant="sage" size="lg" onClick={() => openBooking(s.slug)}>Book a consultation</Button>
+          <WhatsAppCTA size="lg"/>
         </motion.div>
       </div></section>
     </div>

@@ -1,10 +1,7 @@
-"use client";
 import { specialists } from "@/lib/data";
-import { Button, ImgPH } from "@/components/ui";
-import { useBooking } from "@/components/BookingContext";
+import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 
 export default function SpecialistsPage() {
-  const { openBooking } = useBooking();
   return (
     <div className="page" data-screen-label="03 Our Specialists">
       <section className="page-head"><div className="container">
@@ -25,7 +22,7 @@ export default function SpecialistsPage() {
               <div style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--muted)", marginBottom: 20 }}>Focus: {m.focus}</div>
               <p className="lede" style={{ maxWidth: "58ch" }}>{m.bio}</p>
               <div style={{ marginTop: 28 }}>
-                <Button variant="sage" size="sm" onClick={() => openBooking()}>Book with Dr. Akshata</Button>
+                <WhatsAppCTA size="sm" label="Book with Dr. Akshata on WhatsApp"/>
               </div>
             </div>
           </div>
@@ -35,7 +32,7 @@ export default function SpecialistsPage() {
         <div style={{ background: "var(--ink)", color: "var(--paper)", padding: "56px", borderRadius: "var(--radius-lg)", textAlign: "center" }}>
           <h2 style={{ color: "var(--paper)" }}>Not sure who to see?</h2>
           <p className="lede" style={{ margin: "16px auto 28px", color: "rgba(246,243,236,.75)" }}>Describe your concern when booking, and we&rsquo;ll match you to the right physician.</p>
-          <Button variant="sage" size="lg" onClick={() => openBooking()}>Book an appointment</Button>
+          <WhatsAppCTA size="lg"/>
         </div>
       </div></section>
     </div>

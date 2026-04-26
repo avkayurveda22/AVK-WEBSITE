@@ -1,11 +1,8 @@
-"use client";
 import Link from "next/link";
 import { clinic, navAll } from "@/lib/data";
-import { Button } from "./ui";
-import { useBooking } from "./BookingContext";
+import { WhatsAppCTA } from "./WhatsAppCTA";
 
 export default function Footer() {
-  const { openBooking } = useBooking();
   return (
     <footer className="footer">
       <div className="container">
@@ -14,7 +11,7 @@ export default function Footer() {
             <h3>AVK Ayurvedic Clinic</h3>
             <p>Specialised Ayurvedic care in Akshayanagar, Bangalore — rooted in classical practice, tuned for modern lives.</p>
             <div style={{ marginTop: 20 }}>
-              <Button variant="sage" size="sm" onClick={() => openBooking()}>Book appointment</Button>
+              <WhatsAppCTA size="sm"/>
             </div>
           </div>
           <div>

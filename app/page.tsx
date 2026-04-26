@@ -1,11 +1,33 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { clinic, specialities, testimonials, coreComponents } from "@/lib/data";
-import { Button, Kicker, ImgPH } from "@/components/ui";
+import { motion, AnimatePresence } from "framer-motion";
+import { clinic, specialities, testimonials, coreComponents, swarnaPrashana } from "@/lib/data";
+import { Button, Kicker } from "@/components/ui";
 import Icon from "@/components/Icon";
-import { useBooking } from "@/components/BookingContext";
+import { WhatsAppCTA } from "@/components/WhatsAppCTA";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
+
+const orthoReels = [
+  {
+    src: "/hero/Whole-Spine-Adobe-scaled.jpeg",
+    label: "Spine & Backbone",
+    kicker: "01 — Kati Bandhana",
+    treatment: "Warm herbal poultices wrapped along the spine — releasing stiffness, decompressing pinched nerve roots and restoring postural balance.",
+  },
+  {
+    src: "/hero/thumbnail_large_blog-knee-pain-2_tcm88-2779637.jpg",
+    label: "Knee Joint",
+    kicker: "02 — Janu Bandhana",
+    treatment: "Medicated paste and cloth bandaged around the knee — drawing out inflammation, rebuilding cartilage support and steadying gait.",
+  },
+  {
+    src: "/hero/Ankle-Pain.jpg",
+    label: "Ankle Joint",
+    kicker: "03 — Gulpha Bandhana",
+    treatment: "Herbal bandaging around the ankle — calming swelling, restoring ligament tone and bringing the joint back into alignment.",
+  },
+];
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
@@ -35,10 +57,16 @@ const staggerItem = {
 };
 
 export default function HomePage() {
-  const { openBooking } = useBooking();
   const [tIdx, setTIdx] = useState(0);
+  const [vIdx, setVIdx] = useState(0);
+
   useEffect(() => {
     const t = setInterval(() => setTIdx((i) => (i + 1) % testimonials.length), 6000);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    const t = setInterval(() => setVIdx((i) => (i + 1) % orthoReels.length), 3000);
     return () => clearInterval(t);
   }, []);
 
@@ -58,29 +86,55 @@ export default function HomePage() {
                 Non-surgical Ayurvedic care for Spine &amp; Joint, Skin, Wellness and Geriatric concerns — through classical Marma therapy, herbal bandaging and personalized protocols.
               </motion.p>
               <motion.div className="hero-ctas" initial="hidden" animate="visible" custom={3} variants={fadeUp}>
-                <Button variant="sage" size="lg" onClick={() => openBooking()}>Book appointment</Button>
+                <WhatsAppCTA size="lg"/>
                 <Link href="/specialists" style={{ textDecoration: "none" }}><Button variant="ghost" size="lg">Meet our specialists</Button></Link>
               </motion.div>
               <motion.div className="hero-stats" initial="hidden" animate="visible" custom={4} variants={fadeUp}>
                 <div className="hero-stat"><div className="num">15<span style={{ color: "var(--sage)" }}>+</span></div><div className="lbl">Years of practice</div></div>
-                <div className="hero-stat"><div className="num">9,400<span style={{ color: "var(--sage)" }}>+</span></div><div className="lbl">Patients treated</div></div>
+                <div className="hero-stat"><div className="num">1500<span style={{ color: "var(--sage)" }}>+</span></div><div className="lbl">Patients treated</div></div>
                 <div className="hero-stat"><div className="num">4.9<span style={{ color: "var(--sage)", fontSize: 28 }}>/5</span></div><div className="lbl">On Google Reviews</div></div>
               </motion.div>
             </div>
             <motion.div style={{ position: "relative" }} initial="hidden" animate="visible" variants={scaleIn}>
-              <div className="hero-img">
-                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&h=1000&fit=crop&q=80" alt="Ayurvedic herbs and mortar — traditional medicine" style={{ width: "100%", height: "100%", objectFit: "cover" }}/>
+              <div className="hero-img hero-reel">
+                {orthoReels.map((r, i) => (
+                  <motion.img
+                    key={r.src}
+                    src={r.src}
+                    alt={r.label}
+                    initial={false}
+                    animate={{ opacity: i === vIdx ? 1 : 0, scale: i === vIdx ? 1 : 1.04 }}
+                    transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                ))}
+                <div className="hero-reel-veil" />
+                <div className="hero-reel-dots">
+                  {orthoReels.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      aria-label={`Show ${orthoReels[i].label}`}
+                      onClick={() => setVIdx(i)}
+                      className={i === vIdx ? "active" : ""}
+                    />
+                  ))}
+                </div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={vIdx}
+                    className="hero-reel-caption"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                  >
+                    <span className="kicker-mono">{orthoReels[vIdx].kicker}</span>
+                    <h4>{orthoReels[vIdx].label}</h4>
+                    <p>{orthoReels[vIdx].treatment}</p>
+                  </motion.div>
+                </AnimatePresence>
               </div>
-              <motion.div
-                className="hero-card"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-              >
-                <span className="eyebrow">Our promise</span>
-                <h4>Root-cause, non-invasive.</h4>
-                <p>No cuts, no injections, no long-term painkillers. Just authentic Ayurveda — done properly.</p>
-              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -154,6 +208,38 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="container">
+          <motion.div
+            className="sp-promo"
+            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={scaleIn}
+          >
+            <div className="sp-promo-body">
+              <Kicker>For children · Pushya Nakshatra programme</Kicker>
+              <h2 className="sp-promo-title">Swarna Prashana <span style={{ fontStyle: "italic", color: "var(--sage-deep)" }}>— now available at AVK.</span></h2>
+              <p className="sp-promo-lede">{swarnaPrashana.short}</p>
+              <ul className="sp-promo-pills">
+                <li>Boosts immunity</li>
+                <li>Sharpens memory</li>
+                <li>Supports growth</li>
+                <li>Ages 0–16</li>
+              </ul>
+              <div className="sp-promo-ctas">
+                <Link href="/swarna-prashana" style={{ textDecoration: "none" }}>
+                  <Button variant="sage">Learn more</Button>
+                </Link>
+                <a href={clinic.phoneHref} className="btn btn-ghost"><span>Call to reserve</span><Icon name="phone" size={14} stroke={2}/></a>
+              </div>
+            </div>
+            <div className="sp-promo-date">
+              <span className="sp-promo-date-eyebrow">Next dose</span>
+              <div className="sp-promo-date-big">{swarnaPrashana.nextDose.display}</div>
+              <span className="sp-promo-date-sub">{swarnaPrashana.nextDose.nakshatra}</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       <section className="section" style={{ background: "var(--ink)", color: "var(--paper)" }}>
         <div className="container">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
@@ -197,12 +283,14 @@ export default function HomePage() {
             <h2 style={{ maxWidth: "18ch", margin: "0 auto 20px" }}>Come in for a pulse reading.</h2>
             <p className="lede" style={{ margin: "0 auto 32px" }}>A 45-minute consultation with our physician. We&rsquo;ll explain your constitution, what&rsquo;s out of balance, and whether Ayurveda is the right fit for what you&rsquo;re facing.</p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-              <Button variant="sage" size="lg" onClick={() => openBooking()}>Book a consultation</Button>
+              <WhatsAppCTA size="lg"/>
               <a href={clinic.phoneHref} className="btn btn-ghost btn-lg"><span>{clinic.phone}</span><Icon name="phone" size={14} stroke={2}/></a>
             </div>
           </motion.div>
         </div>
       </section>
+
+      <WhatsAppFab/>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { gallery } from "@/lib/data";
-import { ImgPH } from "@/components/ui";
 import Icon from "@/components/Icon";
 
 export default function GalleryPage() {
@@ -25,7 +24,7 @@ export default function GalleryPage() {
         <div className="gallery">
           {filtered.map((g, i) => (
             <div key={i} className={"gallery-item " + (i % 7 === 0 ? "tall" : i % 5 === 0 ? "wide" : "")} onClick={() => setLightbox(g)}>
-              <ImgPH label={g.cap} style={{ height: "100%", borderRadius: 0 }}/>
+              <img src={g.src} alt={g.cap} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}/>
               <div className="cap">{g.cap}</div>
             </div>
           ))}
@@ -35,7 +34,7 @@ export default function GalleryPage() {
         <div className="modal-backdrop open" onClick={() => setLightbox(null)}>
           <div style={{ maxWidth: 960, width: "100%" }} onClick={(e) => e.stopPropagation()}>
             <div style={{ aspectRatio: "16/10", background: "var(--paper-3)", borderRadius: "var(--radius-lg)", overflow: "hidden", position: "relative" }}>
-              <ImgPH label={lightbox.cap} style={{ height: "100%", borderRadius: 0 }}/>
+              <img src={lightbox.src} alt={lightbox.cap} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}/>
               <button className="modal-close" style={{ position: "absolute", top: 16, right: 16, background: "var(--paper)" }} onClick={() => setLightbox(null)}><Icon name="close" size={16}/></button>
             </div>
             <div style={{ color: "var(--paper)", marginTop: 16, fontFamily: "var(--mono)", fontSize: 12, letterSpacing: "0.12em", textTransform: "uppercase", textAlign: "center" }}>{lightbox.cap}</div>

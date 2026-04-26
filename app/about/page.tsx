@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { Button, Kicker, ImgPH } from "@/components/ui";
-import { useBooking } from "@/components/BookingContext";
+import { Kicker } from "@/components/ui";
+import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 import { benefits, comparison } from "@/lib/data";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
@@ -27,7 +27,6 @@ const scaleIn = {
 } as const;
 
 export default function AboutPage() {
-  const { openBooking } = useBooking();
   return (
     <div className="page" data-screen-label="02 About">
       <section className="page-head"><div className="container">
@@ -43,7 +42,7 @@ export default function AboutPage() {
           <p style={{ color: "var(--ink-3)" }}>One unhurried consultation at a time. No over-prescription, no packages pushed at the door. If Ayurveda isn&rsquo;t the right tool for what you&rsquo;ve brought in, we&rsquo;ll say so — and point you somewhere that is.</p>
         </motion.div>
         <motion.div style={{ aspectRatio: "4/5", borderRadius: "var(--radius-lg)", overflow: "hidden" }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={scaleIn}>
-          <ImgPH label="Clinic, 2022" style={{ height: "100%", borderRadius: 0 }}/>
+          <img src="/knee.webp" alt="Knee therapy at AVK" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}/>
         </motion.div>
       </div></div></section>
 
@@ -122,7 +121,7 @@ export default function AboutPage() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} variants={staggerContainer}>
             <Kicker>In numbers</Kicker>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginTop: 12 }}>
-              {[["4", "Years open"], ["9,400+", "Patients"], ["4", "Specialities"], ["4.9/5", "Google rating"], ["320+", "Reviews"], ["3", "Generations of some families"]].map(([n, l]) => (
+              {[["4", "Years open"], ["1,500+", "Patients"], ["4", "Specialities"], ["4.9/5", "Google rating"], ["320+", "Reviews"], ["3", "Generations of some families"]].map(([n, l]) => (
                 <motion.div key={l} variants={staggerItem} style={{ padding: "22px 20px", background: "var(--sage-wash)", borderRadius: "var(--radius)" }}>
                   <div style={{ fontFamily: "var(--serif)", fontSize: 32, color: "var(--sage-deep)", lineHeight: 1 }}>{n}</div>
                   <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 6 }}>{l}</div>
@@ -140,7 +139,7 @@ export default function AboutPage() {
         >
           <h2>Come meet us.</h2>
           <p className="lede" style={{ margin: "16px auto 28px" }}>The best way to understand a clinic is to sit in one. A first consultation is ₹500.</p>
-          <Button variant="sage" size="lg" onClick={() => openBooking()}>Book a first consultation</Button>
+          <WhatsAppCTA size="lg"/>
         </motion.div>
       </div></section>
     </div>

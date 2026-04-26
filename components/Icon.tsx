@@ -15,6 +15,7 @@ const PATHS: Record<string, React.ReactNode> = {
   close: <path d="M5 5l14 14M19 5L5 19"/>,
   menu: <path d="M3 6h18M3 12h18M3 18h18"/>,
   chevron: <path d="M9 6l6 6-6 6"/>,
+  whatsapp: <><path d="M20.5 12a8.5 8.5 0 01-12.7 7.4L3 21l1.6-4.7A8.5 8.5 0 1120.5 12z"/><path d="M9 9.5c0-.5.4-1 1-1l1.2 0c.3 0 .5.2.6.4l.5 1.4c.1.3 0 .6-.2.8l-.7.6c.6 1.2 1.4 2 2.6 2.6l.6-.7c.2-.2.5-.3.8-.2l1.4.5c.2.1.4.3.4.6V15c0 .6-.5 1-1 1-3.4 0-6.4-3-6.4-6.5z"/></>,
 };
 
 export default function Icon({ name, size = 20, stroke = 1.6, style }: { name: string; size?: number; stroke?: number; style?: React.CSSProperties }) {

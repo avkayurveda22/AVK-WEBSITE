@@ -11,7 +11,7 @@ export default function TestimonialsPage() {
       </div></section>
       <section className="section"><div className="container">
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24, marginBottom: 56 }} className="grid-4">
-          {[["4.9 / 5", "Google rating"], ["320+", "Reviews"], ["96%", "Would recommend"], ["9,400+", "Patients seen"]].map(([n, l]) => (
+          {[["4.9 / 5", "Google rating"], ["320+", "Reviews"], ["96%", "Would recommend"], ["1,500+", "Patients seen"]].map(([n, l]) => (
             <div key={l} style={{ padding: "28px 24px", background: "var(--sage-wash)", borderRadius: "var(--radius)" }}>
               <div style={{ fontFamily: "var(--serif)", fontSize: 42, color: "var(--sage-deep)", lineHeight: 1 }}>{n}</div>
               <div style={{ fontSize: 13.5, color: "var(--ink-3)", marginTop: 8 }}>{l}</div>

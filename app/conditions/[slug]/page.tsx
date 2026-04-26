@@ -3,9 +3,9 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { conditions, clinic } from "@/lib/data";
-import { Button, Kicker } from "@/components/ui";
+import { Kicker } from "@/components/ui";
 import Icon from "@/components/Icon";
-import { useBooking } from "@/components/BookingContext";
+import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
@@ -31,7 +31,6 @@ const scaleIn = {
 
 export default function ConditionPage() {
   const { slug } = useParams<{ slug: string }>();
-  const { openBooking } = useBooking();
   const c = conditions.find((x) => x.slug === slug);
 
   if (!c) return (
@@ -54,7 +53,7 @@ export default function ConditionPage() {
         <motion.h1 style={{ marginTop: 16 }} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}>{c.name}</motion.h1>
         <motion.p className="lede" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>{c.description}</motion.p>
         <motion.div style={{ marginTop: 28, display: "flex", gap: 12, flexWrap: "wrap" }} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.5 }}>
-          <Button variant="sage" onClick={() => openBooking()}>Book a consultation</Button>
+          <WhatsAppCTA/>
           <a href={clinic.phoneHref} className="btn btn-ghost">Call {clinic.phone}</a>
         </motion.div>
       </div></section>
@@ -142,7 +141,7 @@ export default function ConditionPage() {
         >
           <h2>Dealing with {c.name.toLowerCase()}?</h2>
           <p className="lede" style={{ margin: "16px auto 28px" }}>A 45-minute consultation is the first step towards relief.</p>
-          <Button variant="sage" size="lg" onClick={() => openBooking()}>Book a consultation</Button>
+          <WhatsAppCTA size="lg"/>
         </motion.div>
       </div></section>
     </div>

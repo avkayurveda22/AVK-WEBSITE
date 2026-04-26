@@ -1,7 +1,8 @@
-export const clinic = {
+  export const clinic = {
   name: "AVK Ayurvedic Clinic & Pharmacy",
   phone: "+91 98449 79745",
   phoneHref: "tel:+919844979745",
+  whatsappHref: "https://wa.me/919844979745?text=Hi%20AVK%2C%20I%27d%20like%20to%20book%20an%20appointment.",
   address1: "#2B/1, Akshayanagar Main Road",
   address2: "Opp. Fullinfaws College, Yellanahalli",
   address3: "Begur Post, Bangalore — 560068",
@@ -454,19 +455,49 @@ export const coreComponents: [string, string][] = [
 ];
 
 export const gallery = [
-  { cat: "clinic", cap: "Reception & waiting area" },
-  { cat: "clinic", cap: "Consultation room" },
-  { cat: "therapy", cap: "Therapy room — marma session" },
-  { cat: "therapy", cap: "Herbal bandaging in progress" },
-  { cat: "pharmacy", cap: "In-house dispensary" },
-  { cat: "pharmacy", cap: "Classical formulations" },
-  { cat: "clinic", cap: "Physician's consultation" },
-  { cat: "therapy", cap: "Therapy preparation room" },
-  { cat: "clinic", cap: "The medicinal garden" },
-  { cat: "therapy", cap: "Herbal oil preparation" },
-  { cat: "pharmacy", cap: "Dispensing counter" },
-  { cat: "clinic", cap: "Clinic exterior" },
+  { cat: "clinic", cap: "Reception & waiting area", src: "/IMG20220818180544.jpg" },
+  { cat: "clinic", cap: "Consultation room", src: "/IMG20221102195122.jpg" },
+  { cat: "therapy", cap: "Therapy room — marma session", src: "/2023-03-3.jpg" },
+  { cat: "therapy", cap: "Herbal bandaging in progress", src: "/2023-03-13.jpg" },
+  { cat: "pharmacy", cap: "In-house dispensary", src: "/WhatsApp%20Image%202022-09-08%20at%2013.49.13.jpeg" },
+  { cat: "pharmacy", cap: "Classical formulations", src: "/WhatsApp%20Image%202022-09-08%20at%2013.49.14%20(1).jpeg" },
+  { cat: "clinic", cap: "Physician's consultation", src: "/2023-07-08.jpg" },
+  { cat: "clinic", cap: "The medicinal garden", src: "/2023-07-14.jpg" },
+  { cat: "therapy", cap: "Herbal oil preparation", src: "/2024-01-13.jpg" },
+  { cat: "pharmacy", cap: "Dispensing counter", src: "/WhatsApp%20Image%202022-09-08%20at%2013.49.14%20(2).jpeg" },
+  { cat: "clinic", cap: "Clinic exterior", src: "/2024-013.jpg" },
 ];
+
+// ============================================================
+// EDIT HERE to update the next Swarna Prashana date.
+// This single value drives the home-page banner and the
+// /swarna-prashana detail page.
+// ============================================================
+export const swarnaPrashanaNextDose = {
+  display: "24 April 2026",
+  nakshatra: "Pushya Nakshatra",
+};
+// ============================================================
+
+export const swarnaPrashana = {
+  short:
+    "An ancient Ayurvedic immunisation for children — purified gold (Suvarna Bhasma) administered on Pushya Nakshatra to support immunity, memory, digestion and overall growth.",
+  origin:
+    "Mentioned in the Kashyap Samhita, one of the oldest classical Ayurvedic texts on paediatric care. Practised in India for centuries as a monthly nourishment for growing children.",
+  ageRange: "Newborn to 16 years",
+  cadence: "Once a month, on Pushya Nakshatra",
+  benefits: [
+    "Boosts immune system",
+    "Enhances memory & intellect",
+    "Improves digestion",
+    "Nourishes the skin",
+    "Reduces mental agitation",
+    "Improves hearing & vision",
+    "Supports physical growth",
+    "Strengthens overall health",
+  ],
+  nextDose: swarnaPrashanaNextDose,
+};
 
 export const navPrimary: [string, string][] = [
   ["/about", "About"],

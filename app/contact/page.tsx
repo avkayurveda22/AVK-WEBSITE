@@ -3,10 +3,9 @@ import { useState } from "react";
 import { clinic } from "@/lib/data";
 import { Button, Kicker } from "@/components/ui";
 import Icon from "@/components/Icon";
-import { useBooking } from "@/components/BookingContext";
+import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 
 export default function ContactPage() {
-  const { openBooking } = useBooking();
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
 
@@ -40,7 +39,7 @@ export default function ContactPage() {
               <div className="field"><label>Message</label><textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}/></div>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 <Button variant="sage" type="submit">Send message</Button>
-                <Button variant="ghost" onClick={() => openBooking()} type="button">Or book an appointment</Button>
+                <WhatsAppCTA variant="ghost" label="Or book on WhatsApp"/>
               </div>
             </form>
           )}

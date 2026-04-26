@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import BookingModal from "@/components/BookingModal";
-import { BookingProvider } from "@/components/BookingContext";
 
 export const metadata: Metadata = {
   title: "AVK Ayurvedic Clinic & Pharmacy — Bangalore",
@@ -22,12 +20,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="accent-teal serif-playfair">
-        <BookingProvider>
-          <Nav/>
-          {children}
-          <Footer/>
-          <BookingModal/>
-        </BookingProvider>
+        <Nav/>
+        {children}
+        <Footer/>
       </body>
     </html>
   );
