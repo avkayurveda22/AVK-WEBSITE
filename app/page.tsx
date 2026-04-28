@@ -253,6 +253,9 @@ export default function HomePage() {
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 style={{ position: i === tIdx ? "relative" : "absolute", top: 0, left: 0, right: 0, pointerEvents: i === tIdx ? "auto" : "none" }}
               >
+                <div aria-label={`${t.stars} out of 5 stars`} style={{ color: "var(--gold)", fontSize: 18, letterSpacing: 3, marginBottom: 20 }}>
+                  {"★".repeat(t.stars)}<span style={{ color: "rgba(182,140,59,.3)" }}>{"★".repeat(5 - t.stars)}</span>
+                </div>
                 <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "clamp(26px,3vw,42px)", lineHeight: 1.35, color: "var(--paper)", maxWidth: "32ch" }}>&ldquo;{t.quote}&rdquo;</div>
                 <div style={{ marginTop: 32, display: "flex", alignItems: "center", gap: 12 }}>
                   <div className="avatar" style={{ background: "var(--sage-deep)", color: "var(--paper)" }}>{t.name[0]}</div>

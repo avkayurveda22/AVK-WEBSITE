@@ -37,8 +37,10 @@ export default function AboutPage() {
       <section className="section"><div className="container"><div className="grid-2" style={{ gap: 64, alignItems: "start" }}>
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={fadeUp}>
           <Kicker>Our story</Kicker>
-          <h2>Fifteen years, one pulse at a time.</h2>
-          <p className="lede" style={{ margin: "24px 0" }}>AVK opened in 2022 as a two-room clinic above a pharmacy on Akshayanagar Main Road. We&rsquo;ve grown since — a dedicated therapy wing, an in-house pharmacy, a dedicated physician — but the rhythm of the clinic has not changed.</p>
+          <h2>Built on care, one patient at a time.</h2>
+          <p className="lede" style={{ margin: "24px 0" }}>AVK began in 2022 as a modest two-room clinic above a pharmacy on Akshayanagar Main Road. Since then, we’ve grown — adding a dedicated therapy wing, an in-house pharmacy, and a full-time physician.
+
+What hasn’t changed is our approach: thoughtful, unhurried care, focused on restoring balance and long-term well-being.</p>
           <p style={{ color: "var(--ink-3)" }}>One unhurried consultation at a time. No over-prescription, no packages pushed at the door. If Ayurveda isn&rsquo;t the right tool for what you&rsquo;ve brought in, we&rsquo;ll say so — and point you somewhere that is.</p>
         </motion.div>
         <motion.div style={{ aspectRatio: "4/5", borderRadius: "var(--radius-lg)", overflow: "hidden" }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={scaleIn}>
@@ -121,7 +123,7 @@ export default function AboutPage() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} variants={staggerContainer}>
             <Kicker>In numbers</Kicker>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginTop: 12 }}>
-              {[["4", "Years open"], ["1,500+", "Patients"], ["4", "Specialities"], ["4.9/5", "Google rating"], ["320+", "Reviews"], ["3", "Generations of some families"]].map(([n, l]) => (
+              {[["4", "Years open"], ["1,500+", "Patients"], ["4", "Specialities"], ["4.9/5", "Google rating"]].map(([n, l]) => (
                 <motion.div key={l} variants={staggerItem} style={{ padding: "22px 20px", background: "var(--sage-wash)", borderRadius: "var(--radius)" }}>
                   <div style={{ fontFamily: "var(--serif)", fontSize: 32, color: "var(--sage-deep)", lineHeight: 1 }}>{n}</div>
                   <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 6 }}>{l}</div>
