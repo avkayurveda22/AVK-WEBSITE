@@ -7,6 +7,19 @@ import { Button, Kicker } from "@/components/ui";
 import Icon from "@/components/Icon";
 import { WhatsAppCTA } from "@/components/WhatsAppCTA";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { ReviewCard } from "@/components/ReviewCard";
+import { ShareExperienceButton } from "@/components/ReviewModal";
+import type { PublicReview } from "@/lib/supabase";
+
+const seedReviews: PublicReview[] = testimonials.map((t, i) => ({
+  id: `seed-${i}`,
+  name: t.name,
+  role: t.role,
+  quote: t.quote,
+  stars: t.stars,
+  created_at: new Date(Date.now() - i * 86400000).toISOString(),
+  source: "site" as const,
+}));
 
 const orthoReels = [
   {
@@ -57,12 +70,19 @@ const staggerItem = {
 };
 
 export default function HomePage() {
-  const [tIdx, setTIdx] = useState(0);
   const [vIdx, setVIdx] = useState(0);
+  const [reviews, setReviews] = useState<PublicReview[]>(seedReviews);
 
   useEffect(() => {
-    const t = setInterval(() => setTIdx((i) => (i + 1) % testimonials.length), 6000);
-    return () => clearInterval(t);
+    let active = true;
+    fetch("/api/reviews")
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (!active || !data || !Array.isArray(data.reviews) || data.reviews.length === 0) return;
+        setReviews(data.reviews);
+      })
+      .catch(() => {});
+    return () => { active = false; };
   }, []);
 
   useEffect(() => {
@@ -242,37 +262,26 @@ export default function HomePage() {
 
       <section className="section" style={{ background: "var(--ink)", color: "var(--paper)" }}>
         <div className="container">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-            <Kicker>What patients say</Kicker>
+          <motion.div
+            style={{ display: "flex", alignItems: "end", justifyContent: "space-between", gap: 20, flexWrap: "wrap", marginBottom: 40 }}
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
+          >
+            <div>
+              <Kicker>What patients say</Kicker>
+              <h2 style={{ color: "var(--paper)", marginTop: 8 }}>4.9 on Google. 1,500+ patients seen.</h2>
+            </div>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <ShareExperienceButton variant="ghost" className="on-dark" label="Share your experience"/>
+              <Link href="/testimonials" style={{ textDecoration: "none" }}><Button variant="ghost" className="on-dark">All reviews</Button></Link>
+            </div>
           </motion.div>
-          <div style={{ position: "relative", minHeight: 280 }}>
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={i}
-                animate={{ opacity: i === tIdx ? 1 : 0, y: i === tIdx ? 0 : 12 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                style={{ position: i === tIdx ? "relative" : "absolute", top: 0, left: 0, right: 0, pointerEvents: i === tIdx ? "auto" : "none" }}
-              >
-                <div aria-label={`${t.stars} out of 5 stars`} style={{ color: "var(--gold)", fontSize: 18, letterSpacing: 3, marginBottom: 20 }}>
-                  {"★".repeat(t.stars)}<span style={{ color: "rgba(182,140,59,.3)" }}>{"★".repeat(5 - t.stars)}</span>
-                </div>
-                <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "clamp(26px,3vw,42px)", lineHeight: 1.35, color: "var(--paper)", maxWidth: "32ch" }}>&ldquo;{t.quote}&rdquo;</div>
-                <div style={{ marginTop: 32, display: "flex", alignItems: "center", gap: 12 }}>
-                  <div className="avatar" style={{ background: "var(--sage-deep)", color: "var(--paper)" }}>{t.name[0]}</div>
-                  <div>
-                    <div style={{ color: "var(--paper)", fontWeight: 600, fontSize: 14 }}>{t.name}</div>
-                    <div style={{ color: "rgba(246,243,236,.6)", fontSize: 13 }}>{t.role}</div>
-                  </div>
-                </div>
+          <motion.div className="rv-grid" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} variants={staggerContainer}>
+            {reviews.slice(0, 6).map((r) => (
+              <motion.div key={r.id} variants={staggerItem}>
+                <ReviewCard review={r} dark/>
               </motion.div>
             ))}
-          </div>
-          <div style={{ marginTop: 32, display: "flex", gap: 8, alignItems: "center" }}>
-            {testimonials.map((_, i) => (
-              <button key={i} onClick={() => setTIdx(i)} style={{ width: 24, height: 3, border: 0, padding: 0, cursor: "pointer", background: i === tIdx ? "var(--paper)" : "rgba(246,243,236,.25)", transition: "background .3s" }}/>
-            ))}
-            <Link href="/testimonials" style={{ marginLeft: "auto", fontFamily: "var(--mono)", fontSize: 12, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--sage-soft)" }}>All reviews →</Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 

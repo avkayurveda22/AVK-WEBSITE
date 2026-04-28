@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { clinic, navAll } from "@/lib/data";
 import { WhatsAppCTA } from "./WhatsAppCTA";
+import { ShareExperienceButton } from "./ReviewModal";
 
 export default function Footer() {
   return (
@@ -10,8 +11,9 @@ export default function Footer() {
           <div className="footer-brand">
             <h3>AVK Ayurvedic Clinic</h3>
             <p>Specialised Ayurvedic care in Akshayanagar, Bangalore — rooted in classical practice, tuned for modern lives.</p>
-            <div style={{ marginTop: 20 }}>
+            <div style={{ marginTop: 20, display: "flex", gap: 10, flexWrap: "wrap" }}>
               <WhatsAppCTA size="sm"/>
+              <ShareExperienceButton size="sm" variant="ghost" className="on-dark" label="Share your experience"/>
             </div>
           </div>
           <div>

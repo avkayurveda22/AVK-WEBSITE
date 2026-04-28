@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { ReviewProvider } from "@/components/ReviewModal";
 
 export const metadata: Metadata = {
   title: "AVK Ayurvedic Clinic & Pharmacy — Bangalore",
@@ -20,9 +21,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="accent-teal serif-playfair">
-        <Nav/>
-        {children}
-        <Footer/>
+        <ReviewProvider>
+          <Nav/>
+          {children}
+          <Footer/>
+        </ReviewProvider>
       </body>
     </html>
   );
