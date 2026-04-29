@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabase, PublicReview } from "@/lib/supabase";
-import { fetchGoogleReviews } from "@/lib/googleReviews";
+import { fetchGoogleReviews, mergeReviews } from "@/lib/googleReviews";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,10 +27,7 @@ async function fetchSiteReviews(): Promise<PublicReview[]> {
 export async function GET() {
   try {
     const [site, google] = await Promise.all([fetchSiteReviews(), fetchGoogleReviews()]);
-    const merged = [...site, ...google].sort(
-      (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-    );
-    return NextResponse.json({ reviews: merged });
+    return NextResponse.json({ reviews: mergeReviews(site, google) });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ error: msg }, { status: 500 });

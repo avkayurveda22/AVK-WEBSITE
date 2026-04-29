@@ -292,7 +292,7 @@ export default function HomePage() {
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={scaleIn}
           >
             <Kicker>First visit?</Kicker>
-            <h2 style={{ maxWidth: "18ch", margin: "0 auto 20px" }}>Come in for a pulse reading.</h2>
+            <h2 style={{ maxWidth: "18ch", margin: "0 auto 20px" }}>Begin your personalized Ayurveda consultation. </h2>
             <p className="lede" style={{ margin: "0 auto 32px" }}>A 45-minute consultation with our physician. We&rsquo;ll explain your constitution, what&rsquo;s out of balance, and whether Ayurveda is the right fit for what you&rsquo;re facing.</p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <WhatsAppCTA size="lg"/>

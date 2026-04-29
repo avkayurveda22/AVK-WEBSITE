@@ -57,6 +57,15 @@ export async function fetchGoogleReviews(): Promise<PublicReview[]> {
   }
 }
 
+export function mergeReviews(site: PublicReview[], google: PublicReview[]): PublicReview[] {
+  const norm = (s: string) => s.toLowerCase().trim().replace(/\s+/g, " ");
+  const siteKeys = new Set(site.map((r) => norm(r.name)));
+  const fresh = google.filter((g) => !siteKeys.has(norm(g.name)));
+  return [...site, ...fresh].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  );
+}
+
 export async function fetchGoogleSummary(): Promise<{ rating: number | null; count: number | null }> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   const placeId = process.env.GOOGLE_PLACE_ID;

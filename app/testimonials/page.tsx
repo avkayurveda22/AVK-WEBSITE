@@ -1,6 +1,6 @@
 import { testimonials as staticTestimonials } from "@/lib/data";
 import { getSupabase, PublicReview } from "@/lib/supabase";
-import { fetchGoogleReviews, fetchGoogleSummary } from "@/lib/googleReviews";
+import { fetchGoogleReviews, fetchGoogleSummary, mergeReviews } from "@/lib/googleReviews";
 import { ReviewCard } from "@/components/ReviewCard";
 import { ReviewForm } from "@/components/ReviewForm";
 
@@ -27,9 +27,7 @@ async function fetchSiteReviews(): Promise<PublicReview[]> {
 
 async function loadReviews(): Promise<PublicReview[]> {
   const [site, google] = await Promise.all([fetchSiteReviews(), fetchGoogleReviews()]);
-  return [...site, ...google].sort(
-    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-  );
+  return mergeReviews(site, google);
 }
 
 function fallback(): PublicReview[] {

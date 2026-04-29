@@ -275,12 +275,17 @@ p{margin:0 0 1em}
 .rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:900px){.rv-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.rv-grid{grid-template-columns:1fr}}
-.rv-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s,transform .2s}
+.rv-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s,transform .2s;min-height:280px}
 .rv-card:hover{border-color:var(--sage-soft);transform:translateY(-2px)}
 .rv-card-stars{color:var(--gold);font-size:15px;letter-spacing:2px}
 .rv-card-stars .empty{color:rgba(182,140,59,.25)}
 .rv-card-quote{margin:0;font-size:14.5px;line-height:1.6;color:var(--ink-2);flex:1}
-.rv-card-foot{display:flex;align-items:center;gap:12px;padding-top:12px;border-top:1px solid var(--line)}
+.rv-card-quote.clamped{display:-webkit-box;-webkit-line-clamp:6;line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;flex:0 0 auto}
+.rv-card-toggle{align-self:flex-start;background:transparent;border:0;padding:6px 0;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage-deep);cursor:pointer;transition:color .15s}
+.rv-card-toggle:hover{color:var(--ink)}
+.rv-card-dark .rv-card-toggle{color:var(--sage-soft)}
+.rv-card-dark .rv-card-toggle:hover{color:var(--paper)}
+.rv-card-foot{display:flex;align-items:center;gap:12px;padding-top:12px;border-top:1px solid var(--line);margin-top:auto}
 .rv-card-avatar{width:36px;height:36px;border-radius:50%;background:var(--sage-deep);color:var(--paper);display:grid;place-items:center;font-family:var(--serif);font-size:15px;flex-shrink:0}
 .rv-card-name{font-weight:600;font-size:14px;color:var(--ink)}
 .rv-card-role{font-size:12.5px;color:var(--muted);margin-top:2px}

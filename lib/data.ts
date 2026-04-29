@@ -66,15 +66,66 @@ export const specialists = [
 ];
 
 export const testimonials = [
-  { name: "Sathish Murthy", role: "Software architect · HSR Layout", stars: 5, quote: "After two years of chronic back pain and endless painkillers, a course of Marma therapy and herbal bandaging here finally gave me relief. It's not a quick fix — it's a proper, classical process. Worth every rupee." },
-  { name: "Kavya R.", role: "Teacher · Jayanagar", stars: 5, quote: "I had psoriasis flaring every winter for a decade. AVK's approach is slower — three months of diet, internal medicines and weekly reviews — but it's the first winter in ten years I haven't had a flare." },
-  { name: "Ananya P.", role: "Architect · Bommanahalli", stars: 5, quote: "What I appreciate most is that Dr. Akshata doesn't over-prescribe. She listens, adjusts, and often tells me to fix my sleep before anything else. That kind of integrity is rare." },
-  { name: "Ravi Kumar", role: "Retired · Electronic City", stars: 5, quote: "At 72, I was convinced my knees were done. Six weeks of marma stimulation, herbal bandaging and a walking routine later, I'm on morning walks again. The therapists are patient and very skilled." },
-  { name: "Meera Iyer", role: "Yoga teacher · Sarjapur", stars: 5, quote: "I send my students here because I know they'll be assessed properly, not pushed into packages they don't need. The pulse reading alone is worth the visit." },
-  { name: "Pradeep S.", role: "Father · Begur", stars: 5, quote: "My whole family sees Dr. Akshata — my parents for their BP and joints, my wife for her migraines, me for stress. It's rare to find a doctor who knows three generations." },
-  { name: "Lakshmi Narayan", role: "Homemaker · BTM", stars: 5, quote: "I walked in with migraines and walked out, three weeks later, with a diet, a routine and no migraines. The detail in the treatment plan surprised me." },
-  { name: "Rohan & Divya", role: "Couple · Koramangala", stars: 5, quote: "We came in for fertility support after a difficult year. The doctor took time to understand both of us, not just the 'issue'. Treatment was honest, unrushed, and — happily — successful." },
-  { name: "Suresh B.", role: "Entrepreneur · JP Nagar", stars: 5, quote: "I travelled three hours for my first consultation. I'd do it again. The depth of questioning and the honesty of the prognosis is something I haven't seen at other clinics." },
+  {
+    name: "TJ Anand",
+    role: "Google review · May 2025",
+    stars: 5,
+    quote: "I highly recommend AVK Ayurvedic Clinic, especially due to the outstanding care provided by Dr. Akshatha. I had taken my parents to her for treatment of their joint pains that had found a dead end with allopathic medicine. From our first visit, I was impressed by the clinic's warm atmosphere and deep commitment to holistic well-being. Dr. Akshatha's expertise in Ayurveda and her care for the patients' well-being are truly remarkable. She's incredibly compassionate, took the time to listen, explained every step, and answered every question with patience and reassurance. Her treatments have been highly effective, leading to significant improvement in mobility for both my parents. If you're looking for authentic Ayurvedic care delivered with genuine expertise and compassion, Dr. Akshatha at AVK is an absolute standout. Thank you Doctor — you are a blessing.",
+  },
+  {
+    name: "Sonia",
+    role: "Google review · April 2026",
+    stars: 5,
+    quote: "Dr. Akshata Shetty has a very caring approach towards patients. She took the time to understand my health concerns in detail and explained the treatment in a simple and clear way. The medicines were natural and effective, and I could see improvement within a few weeks. Treatment is effective and focused on long-term health. Highly recommended. — Nandini and Family.",
+  },
+  {
+    name: "Parvatamma Chandrappa",
+    role: "Google review · August 2024",
+    stars: 5,
+    quote: "A healing touch at 64. At my age, finding a treatment that provides relief without the side effects often associated with conventional medicine can be a challenge. My journey to alleviate the pain from an L4 and L5 disc bulge and knee pain led me to Dr. Akshatha and the ancient wisdom of Ayurveda. Her approach goes beyond treating ailments — she seeks to understand the individual and their unique health challenges. The herbal packing treatment she administered was a testament to the power of natural remedies. After a long period of suffering, I am now able to walk, sit and perform my daily chores with minimal discomfort — a newfound freedom that has dramatically improved my quality of life.",
+  },
+  {
+    name: "Devaiah NU",
+    role: "Google review · October 2024",
+    stars: 5,
+    quote: "Had treatment for my knee ligament stretch from playing badminton, and Dr. Akshata suggested an ayurvedic leg pack which we kept on for 24 hours, twice. I felt instant relief. 5★",
+  },
+  {
+    name: "Sowjanya Shetty",
+    role: "Google review · August 2024",
+    stars: 5,
+    quote: "My experience with Dr. Akshatha was really great. I had been having digestion issues for more than 10 years and tried addressing them with many doctors, but from the time I started consulting with Dr. Akshatha, things have completely come on track. My digestion is steady and I feel great about my health.",
+  },
+  {
+    name: "Mamatha Praveen",
+    role: "Google review · April 2023",
+    stars: 5,
+    quote: "My mother was suffering from pain in her lower limb due to a bulging lumbar disc for six months. We consulted so many doctors and they all advised an operation. Then we consulted Dr. Akshatha — an orthopedic specialist in ayurvedic treatment — and started treatment with her. Now my mother is feeling much better than before, and we are continuing the treatment. Thank you Doctor.",
+  },
+  {
+    name: "Chaithra Sriram",
+    role: "Google review · March 2023",
+    stars: 5,
+    quote: "This place and Dr. Akshata Shetty have been a life-changing experience for my mother. The doctor is very kind and caring. I would definitely recommend this place for healthy life consulting. You are given enough time to explain your problems and understand the suggested treatment procedure. Best place for ayurvedic treatment — my mother is happy now without any back pain.",
+  },
+  {
+    name: "Mallesha Rao K.L",
+    role: "Google review · March 2023",
+    stars: 5,
+    quote: "Go-to place for ortho-related issues. I took my wife for a cervical issue and the herbal pack from Dr. Akshata is helping a lot — she's feeling way better than at any other place we have visited. I recommend the doctor!",
+  },
+  {
+    name: "Ram Jilal",
+    role: "Google review · June 2024",
+    stars: 5,
+    quote: "Very experienced doctor — we are very happy with the treatment.",
+  },
+  {
+    name: "Naresh Jayakumar",
+    role: "Google review · March 2023",
+    stars: 5,
+    quote: "Very effective and relevant treatment given.",
+  },
 ];
 
 export type Condition = {
