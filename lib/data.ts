@@ -520,7 +520,7 @@ export const swarnaPrashana = {
     "An ancient Ayurvedic immunisation for children — purified gold (Suvarna Bhasma) administered on Pushya Nakshatra to support immunity, memory, digestion and overall growth.",
   origin:
     "Mentioned in the Kashyap Samhita, one of the oldest classical Ayurvedic texts on paediatric care. Practised in India for centuries as a monthly nourishment for growing children.",
-  ageRange: "Newborn to 16 years",
+  ageRange: "Newborn to 12 years",
   cadence: "Once a month, on Pushya Nakshatra",
   benefits: [
     "Boosts immune system",

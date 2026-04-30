@@ -242,7 +242,7 @@ export default function HomePage() {
                 <li>Boosts immunity</li>
                 <li>Sharpens memory</li>
                 <li>Supports growth</li>
-                <li>Ages 0–16</li>
+                <li>Ages 0–12</li>
               </ul>
               <div className="sp-promo-ctas">
                 <Link href="/swarna-prashana" style={{ textDecoration: "none" }}>
