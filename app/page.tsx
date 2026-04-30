@@ -248,7 +248,7 @@ export default function HomePage() {
                 <Link href="/swarna-prashana" style={{ textDecoration: "none" }}>
                   <Button variant="sage">Learn more</Button>
                 </Link>
-                <a href={clinic.phoneHref} className="btn btn-ghost"><span>Call to reserve</span><Icon name="phone" size={14} stroke={2}/></a>
+                {/* <a href={clinic.phoneHref} className="btn btn-ghost"><span>Call to reserve</span><Icon name="phone" size={14} stroke={2}/></a> */}
               </div>
             </div>
             <div className="sp-promo-date">
