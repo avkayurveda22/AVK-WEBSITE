@@ -135,7 +135,7 @@ export default function SwarnaPrashanaPage() {
                 </div>
                 <div>
                   <h4>How long should we continue?</h4>
-                  <p>The classical recommendation is from birth to 16 years. Many parents commit for the first 2–5 years and continue based on observed benefit.</p>
+                  <p>The classical recommendation is from birth to 12 years. Many parents commit for the first 2–5 years and continue based on observed benefit.</p>
                 </div>
               </div>
             </motion.div>
