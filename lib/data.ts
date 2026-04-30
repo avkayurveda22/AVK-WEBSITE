@@ -499,16 +499,9 @@ export const coreComponents: [string, string][] = [
 
 export const gallery = [
   { cat: "clinic", cap: "Reception & waiting area", src: "/IMG20220818180544.jpg" },
-  { cat: "clinic", cap: "Consultation room", src: "/IMG20221102195122.jpg" },
   { cat: "therapy", cap: "Therapy room — marma session", src: "/2023-03-3.jpg" },
   { cat: "therapy", cap: "Herbal bandaging in progress", src: "/2023-03-13.jpg" },
-  { cat: "pharmacy", cap: "In-house dispensary", src: "/WhatsApp%20Image%202022-09-08%20at%2013.49.13.jpeg" },
-  { cat: "pharmacy", cap: "Classical formulations", src: "/WhatsApp%20Image%202022-09-08%20at%2013.49.14%20(1).jpeg" },
-  { cat: "clinic", cap: "Physician's consultation", src: "/2023-07-08.jpg" },
   { cat: "clinic", cap: "The medicinal garden", src: "/2023-07-14.jpg" },
-  { cat: "therapy", cap: "Herbal oil preparation", src: "/2024-01-13.jpg" },
-  { cat: "pharmacy", cap: "Dispensing counter", src: "/WhatsApp%20Image%202022-09-08%20at%2013.49.14%20(2).jpeg" },
-  { cat: "clinic", cap: "Clinic exterior", src: "/2024-013.jpg" },
 ];
 
 // ============================================================

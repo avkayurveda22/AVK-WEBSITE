@@ -252,9 +252,13 @@ export default function HomePage() {
               </div>
             </div>
             <div className="sp-promo-date">
-              <span className="sp-promo-date-eyebrow">Next dose</span>
-              <div className="sp-promo-date-big">{swarnaPrashana.nextDose.display}</div>
-              <span className="sp-promo-date-sub">{swarnaPrashana.nextDose.nakshatra}</span>
+              <span className="sp-promo-date-eyebrow">Curious to know more?</span>
+              <div className="sp-promo-date-big">Talk to us.</div>
+              <p className="sp-promo-date-msg">Schedules, dosage by age, what to expect — we&rsquo;ll walk you through everything before your child&rsquo;s first dose.</p>
+              <div className="sp-promo-date-ctas">
+                <WhatsAppCTA size="sm" label="Message on WhatsApp"/>
+                <a href={clinic.phoneHref} className="btn btn-ghost btn-sm"><span>Call us</span><Icon name="phone" size={13} stroke={2}/></a>
+              </div>
             </div>
           </motion.div>
         </div>

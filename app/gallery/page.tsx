@@ -17,7 +17,7 @@ export default function GalleryPage() {
       </div></section>
       <section className="section"><div className="container">
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 }}>
-          {[["all", "All"], ["clinic", "Clinic"], ["therapy", "Therapy rooms"], ["pharmacy", "Pharmacy"]].map(([k, l]) => (
+          {[["all", "All"], ["clinic", "Clinic"], ["therapy", "Therapy rooms"]].map(([k, l]) => (
             <button key={k} className={"chip" + (filter === k ? " active" : "")} onClick={() => setFilter(k)}>{l}</button>
           ))}
         </div>
