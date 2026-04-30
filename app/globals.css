@@ -308,14 +308,14 @@ p{margin:0 0 1em}
 .sp-promo-pills{list-style:none;padding:0;margin:0 0 28px;display:flex;gap:8px;flex-wrap:wrap}
 .sp-promo-pills li{padding:6px 14px;border:1px solid var(--sage-soft);border-radius:999px;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage-deep);background:var(--paper)}
 .sp-promo-ctas{display:flex;gap:12px;flex-wrap:wrap}
-.sp-promo-date{position:relative;z-index:1;background:var(--paper);border:1px solid var(--sage-soft);border-radius:var(--radius);padding:32px 28px;text-align:center;box-shadow:0 16px 40px rgba(31,85,73,.08)}
+.sp-promo-date{position:relative;z-index:1;background:var(--paper);border:1px solid var(--sage-soft);border-radius:24px;padding:32px 28px;text-align:center;box-shadow:0 16px 40px rgba(31,85,73,.08)}
 .sp-promo-date-eyebrow{display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:14px}
 .sp-promo-date-big{font-family:var(--serif);font-size:34px;line-height:1.1;color:var(--ink);margin-bottom:14px;font-weight:500;font-style:italic}
 .sp-promo-date-sub{display:block;font-size:13px;color:var(--muted);font-style:italic}
 .sp-promo-date-msg{margin:0 0 22px;font-size:13.5px;line-height:1.55;color:var(--ink-3)}
 .sp-promo-date-ctas{display:flex;flex-direction:column;gap:8px;align-items:stretch}
 .sp-promo-date-ctas .btn{justify-content:center}
-@media(max-width:900px){.sp-promo{grid-template-columns:1fr;padding:40px 32px;gap:32px}.sp-promo-date{order:-1}}
+@media(max-width:900px){.sp-promo{grid-template-columns:1fr;padding:40px 32px;gap:32px}.sp-promo-date{order:0;border-radius:28px}}
 
 .sp-dl{margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
 .sp-dl > div{display:grid;grid-template-columns:130px 1fr;gap:16px;padding-bottom:14px;border-bottom:1px solid var(--sage-soft)}

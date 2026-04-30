@@ -510,7 +510,7 @@ export const gallery = [
 // /swarna-prashana detail page.
 // ============================================================
 export const swarnaPrashanaNextDose = {
-  display: "24 April 2026",
+  display: "21 May 2026",
   nakshatra: "Pushya Nakshatra",
 };
 // ============================================================
