@@ -502,6 +502,12 @@ export const gallery = [
   { cat: "therapy", cap: "Therapy room — marma session", src: "/2023-03-3.jpg" },
   { cat: "therapy", cap: "Herbal bandaging in progress", src: "/2023-03-13.jpg" },
   { cat: "clinic", cap: "The medicinal garden", src: "/2023-07-14.jpg" },
+  { cat: "clinic", cap: "Clinic interior", src: "/first.jpeg" },
+  { cat: "therapy", cap: "Treatment session", src: "/second.jpeg" },
+  { cat: "clinic", cap: "Clinic space", src: "/third.jpeg" },
+  { cat: "therapy", cap: "Therapeutic treatment", src: "/forth.jpeg" },
+  { cat: "clinic", cap: "Clinic area", src: "/fifth.jpeg" },
+  { cat: "therapy", cap: "Patient care", src: "/six.jpeg" },
 ];
 
 // ============================================================
