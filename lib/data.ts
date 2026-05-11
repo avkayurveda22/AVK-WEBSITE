@@ -3,6 +3,7 @@
   phone: "+91 98449 79745",
   phoneHref: "tel:+919844979745",
   whatsappHref: "https://wa.me/919844979745?text=Hi%20AVK%2C%20I%27d%20like%20to%20book%20an%20appointment.",
+  mapsHref: "https://www.google.com/maps/place/AVK+Ayurvedic+clinic+and+Pharmacy/@12.8684272,77.6113097,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae6bb59d74cc59:0x874b5b3351c1afea!8m2!3d12.868422!4d77.6161806!16s%2Fg%2F11t4fx2x1x?entry=ttu",
   address1: "#2B/1, Akshayanagar Main Road",
   address2: "Opp. Fullinfaws College, Yellanahalli",
   address3: "Begur Post, Bangalore — 560068",

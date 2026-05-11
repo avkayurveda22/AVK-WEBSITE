@@ -2,7 +2,7 @@ import React from "react";
 import Icon from "./Icon";
 
 export function Button({
-  children, onClick, variant = "dark", size, className = "", type = "button", noIcon, style,
+  children, onClick, variant = "dark", size, className = "", type = "button", noIcon, style, disabled,
 }: {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent) => void;
@@ -12,10 +12,17 @@ export function Button({
   type?: "button" | "submit";
   noIcon?: boolean;
   style?: React.CSSProperties;
+  disabled?: boolean;
 }) {
   const cls = ["btn", variant === "ghost" && "btn-ghost", variant === "sage" && "btn-sage", size === "sm" && "btn-sm", size === "lg" && "btn-lg", className].filter(Boolean).join(" ");
   return (
-    <button className={cls} onClick={onClick} type={type} style={style}>
+    <button
+      className={cls}
+      onClick={onClick}
+      type={type}
+      style={{ ...(disabled ? { opacity: 0.55, cursor: "not-allowed" } : null), ...style }}
+      disabled={disabled}
+    >
       <span>{children}</span>
       {!noIcon && <Icon name="arrow" size={14} stroke={2}/>}
     </button>

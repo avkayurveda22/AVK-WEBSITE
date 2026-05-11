@@ -4,10 +4,34 @@ import { clinic } from "@/lib/data";
 import { Button, Kicker } from "@/components/ui";
 import Icon from "@/components/Icon";
 import { WhatsAppCTA } from "@/components/WhatsAppCTA";
+import { trackEvent } from "@/lib/gtag";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setSending(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Could not send message.");
+      trackEvent("contact_form_submit", {});
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not send message.");
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <div className="page" data-screen-label="10 Contact">
@@ -32,13 +56,20 @@ export default function ContactPage() {
               </div>
             </div>
           ) : (
-            <form onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+            <form onSubmit={handleSubmit}>
               <div className="field"><label>Your name</label><input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}/></div>
               <div className="field"><label>Phone</label><input required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })}/></div>
               <div className="field"><label>Email (optional)</label><input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}/></div>
               <div className="field"><label>Message</label><textarea required rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}/></div>
+              {error && (
+                <div style={{ marginBottom: 14, padding: "10px 12px", background: "#fdecec", border: "1px solid #f0c4c4", borderRadius: 6, color: "#8a2a2a", fontSize: 14 }}>
+                  {error}
+                </div>
+              )}
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                <Button variant="sage" type="submit">Send message</Button>
+                <Button variant="sage" type="submit" disabled={sending}>
+                  {sending ? "Sending…" : "Send message"}
+                </Button>
                 <WhatsAppCTA variant="ghost" label="Or book on WhatsApp"/>
               </div>
             </form>
@@ -66,12 +97,25 @@ export default function ContactPage() {
               <div style={{ width: 0, height: 0, borderLeft: "6px solid transparent", borderRight: "6px solid transparent", borderTop: "8px solid var(--sage-deep)", margin: "0 auto" }}/>
               <div style={{ width: 14, height: 14, borderRadius: "50%", background: "var(--sage-deep)", border: "3px solid #fff", margin: "0 auto", boxShadow: "0 2px 6px rgba(0,0,0,.2)" }}/>
             </div>
-            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="btn btn-sm" style={{ position: "absolute", bottom: 16, right: 16, background: "#fff", color: "var(--ink)", borderColor: "var(--line)" }}>
+            <a
+              href={clinic.mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-sm"
+              style={{ position: "absolute", bottom: 16, right: 16, background: "#fff", color: "var(--ink)", borderColor: "var(--line)" }}
+              onClick={() => trackEvent("directions_click", { source: "contact_map_button" })}
+            >
               <span>Open in Maps</span><Icon name="arrow-up-right" size={14} stroke={2}/>
             </a>
           </div>
           <div style={{ marginTop: 24 }}>
-            <div className="info-row"><div className="ic"><Icon name="pin" size={18}/></div><div><span className="lbl">Address</span><div className="val">{clinic.address1}</div><div className="sub">{clinic.address2}</div><div className="sub">{clinic.address3}</div></div></div>
+            <div className="info-row"><div className="ic"><Icon name="pin" size={18}/></div><div><span className="lbl">Address</span><a
+              href={clinic.mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent("directions_click", { source: "contact_address" })}
+              style={{ textDecoration: "none", color: "inherit", display: "block" }}
+            ><div className="val">{clinic.address1}</div><div className="sub">{clinic.address2}</div><div className="sub">{clinic.address3}</div></a></div></div>
             <div className="info-row"><div className="ic"><Icon name="phone" size={18}/></div><div><span className="lbl">Phone / WhatsApp</span><div className="val"><a href={clinic.phoneHref} className="link-u">{clinic.phone}</a></div></div></div>
             <div className="info-row"><div className="ic"><Icon name="mail" size={18}/></div><div><span className="lbl">Email</span><div className="val"><a href={"mailto:" + clinic.email} className="link-u">{clinic.email}</a></div></div></div>
             <div className="info-row"><div className="ic"><Icon name="clock" size={18}/></div><div><span className="lbl">Hours</span>{clinic.hours.map((h, i) => <div key={i} style={{ fontSize: 14.5, marginTop: i === 0 ? 2 : 4 }}><b>{h.d}</b> — <span style={{ color: "var(--muted)" }}>{h.t}</span></div>)}</div></div>

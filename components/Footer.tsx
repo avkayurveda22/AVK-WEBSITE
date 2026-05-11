@@ -18,7 +18,11 @@ export default function Footer() {
           </div>
           <div>
             <h5>Visit</h5>
-            <ul><li>{clinic.address1}</li><li>{clinic.address2}</li><li>{clinic.address3}</li></ul>
+            <ul>
+              <li><a href={clinic.mapsHref} target="_blank" rel="noopener noreferrer">{clinic.address1}</a></li>
+              <li><a href={clinic.mapsHref} target="_blank" rel="noopener noreferrer">{clinic.address2}</a></li>
+              <li><a href={clinic.mapsHref} target="_blank" rel="noopener noreferrer">{clinic.address3}</a></li>
+            </ul>
           </div>
           <div>
             <h5>Reach us</h5>
