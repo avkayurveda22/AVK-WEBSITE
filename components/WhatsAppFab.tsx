@@ -1,5 +1,7 @@
+"use client";
 import { clinic } from "@/lib/data";
 import Icon from "./Icon";
+import { trackEvent } from "@/lib/gtag";
 
 export function WhatsAppFab() {
   return (
@@ -9,6 +11,7 @@ export function WhatsAppFab() {
       rel="noopener noreferrer"
       className="wa-fab"
       aria-label="Chat with AVK on WhatsApp"
+      onClick={() => trackEvent("whatsapp_click", { source: "fab" })}
     >
       <span className="wa-fab-icon"><Icon name="whatsapp" size={22} stroke={2}/></span>
       <span className="wa-fab-label">Chat with us</span>

@@ -6,6 +6,7 @@ import { clinic, navPrimary, navAll } from "@/lib/data";
 import { Logo } from "./ui";
 import Icon from "./Icon";
 import { WhatsAppCTA } from "./WhatsAppCTA";
+import { trackEvent } from "@/lib/gtag";
 
 export default function Nav() {
   const pathname = usePathname();
@@ -32,7 +33,11 @@ export default function Nav() {
             ))}
           </div>
           <div className="nav-cta">
-            <a href={clinic.phoneHref} className="nav-phone">{clinic.phone}</a>
+            <a
+              href={clinic.phoneHref}
+              className="nav-phone"
+              onClick={() => trackEvent("phone_click", { source: "nav_header" })}
+            >{clinic.phone}</a>
             <WhatsAppCTA size="sm" label="Book on WhatsApp"/>
             <button className="nav-toggle" onClick={() => setDrawer(true)}>
               <Icon name="menu" size={16}/> Menu
@@ -52,7 +57,11 @@ export default function Nav() {
         <div style={{ marginTop: 28 }} onClick={() => setDrawer(false)}>
           <WhatsAppCTA label="Book on WhatsApp"/>
         </div>
-        <a href={clinic.phoneHref} style={{ marginTop: 14, fontFamily: "var(--mono)", fontSize: 13 }}>{clinic.phone}</a>
+        <a
+          href={clinic.phoneHref}
+          style={{ marginTop: 14, fontFamily: "var(--mono)", fontSize: 13 }}
+          onClick={() => trackEvent("phone_click", { source: "nav_drawer" })}
+        >{clinic.phone}</a>
       </aside>
     </>
   );

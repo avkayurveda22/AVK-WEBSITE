@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { ReviewProvider } from "@/components/ReviewModal";
+import GoogleAnalyticsTracker from "@/components/GoogleAnalyticsTracker";
+import { GA_MEASUREMENT_ID } from "@/lib/gtag";
 
 export const metadata: Metadata = {
   title: "AVK Ayurvedic Clinic & Pharmacy — Bangalore",
@@ -21,6 +24,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="accent-teal serif-playfair">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });
+          `}
+        </Script>
+        <GoogleAnalyticsTracker/>
         <ReviewProvider>
           <Nav/>
           {children}

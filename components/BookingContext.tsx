@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
+import { trackEvent } from "@/lib/gtag";
 
 type Ctx = {
   open: boolean;
@@ -15,7 +16,11 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
   return (
     <BookingCtx.Provider value={{
       open, spec,
-      openBooking: (s) => { setSpec(s ?? null); setOpen(true); },
+      openBooking: (s) => {
+        setSpec(s ?? null);
+        setOpen(true);
+        trackEvent("booking_open", { speciality: s ?? "none" });
+      },
       closeBooking: () => { setOpen(false); setSpec(null); },
     }}>
       {children}

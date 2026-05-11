@@ -4,6 +4,7 @@ import { specialities } from "@/lib/data";
 import { Button } from "./ui";
 import Icon from "./Icon";
 import { useBooking } from "./BookingContext";
+import { trackEvent } from "@/lib/gtag";
 
 type DateOpt = { date: string; month: string; year: number; day: string };
 
@@ -126,7 +127,15 @@ export default function BookingModal() {
         <div className="modal-foot">
           {step > 0 && step < 4 ? <button className="btn btn-ghost btn-sm" onClick={() => setStep(step - 1)}><span>Back</span></button> : <div/>}
           {step < 3 && <Button variant="sage" size="sm" onClick={() => canAdvance() && setStep(step + 1)} style={{ opacity: canAdvance() ? 1 : 0.5, pointerEvents: canAdvance() ? "auto" : "none" }}>Continue</Button>}
-          {step === 3 && <Button variant="sage" size="sm" onClick={() => canAdvance() && setStep(4)} style={{ opacity: canAdvance() ? 1 : 0.5, pointerEvents: canAdvance() ? "auto" : "none" }}>Confirm booking</Button>}
+          {step === 3 && <Button variant="sage" size="sm" onClick={() => {
+            if (!canAdvance()) return;
+            trackEvent("booking_confirmed", {
+              speciality: data.spec ?? "none",
+              date: data.date ? `${data.date.date} ${data.date.month} ${data.date.year}` : null,
+              slot: data.slot,
+            });
+            setStep(4);
+          }} style={{ opacity: canAdvance() ? 1 : 0.5, pointerEvents: canAdvance() ? "auto" : "none" }}>Confirm booking</Button>}
           {step === 4 && <Button variant="sage" size="sm" onClick={closeBooking} noIcon>Done</Button>}
         </div>
       </div>

@@ -1,5 +1,7 @@
+"use client";
 import { clinic } from "@/lib/data";
 import Icon from "./Icon";
+import { trackEvent } from "@/lib/gtag";
 
 export function WhatsAppCTA({
   label = "Book on WhatsApp",
@@ -21,7 +23,13 @@ export function WhatsAppCTA({
     className,
   ].filter(Boolean).join(" ");
   return (
-    <a className={cls} href={clinic.whatsappHref} target="_blank" rel="noopener noreferrer">
+    <a
+      className={cls}
+      href={clinic.whatsappHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => trackEvent("whatsapp_click", { source: "cta", label })}
+    >
       <span>{label}</span>
       <Icon name="whatsapp" size={14} stroke={2}/>
     </a>
