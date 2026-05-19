@@ -8,7 +8,7 @@ declare global {
 
 export function pageview(url: string) {
   if (typeof window === "undefined" || !window.gtag) return;
-  window.gtag("config", GA_MEASUREMENT_ID, { page_path: url });
+  window.gtag("event", "page_view", { page_path: url });
 }
 
 export function trackEvent(name: string, params: Record<string, unknown> = {}) {
